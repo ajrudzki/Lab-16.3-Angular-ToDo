@@ -5,8 +5,9 @@
     <p><b>A place to store your todos</b></p>
 
     <li>
-      <ol class="toDoStyle">
-        <div *ngFor="let toDoList of List">
+      <ol>
+        <div class="toDoStyle" *ngFor="let toDoList of List">
+          {{toDoList.task}} {{toDoList.complete}}
           <button class="completeButton" *ngIf="item.complete==false" (click)="completeTask(item)">Complete</button> {{item.task}}
           <button (click)="removeTask()">X</button>
         </div>

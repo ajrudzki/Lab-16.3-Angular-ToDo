@@ -1,23 +1,29 @@
 <div class="pageStyle">
+  <fieldset class="lineItUp">
 
-  <div class="toDoStyle">
     <h1>{{title}}</h1>
-    <p><b>A place to store your todos</b></p>
+    <div>{{subtitle}}</div><br>
+    <input type="text" class="bigText" placeholder="Filter your to-dos">
 
-    <li>
+    <table>
       <ol>
-        <div class="toDoStyle" *ngFor="let toDoList of List">
-          {{toDoList.task}} {{toDoList.complete}}
-          <button class="completeButton" *ngIf="item.complete==false" (click)="completeTask(item)">Complete</button> {{item.task}}
-          <button (click)="removeTask()">X</button>
+        <div *ngFor="let item of toDoList">
+          <li>
+            <tr>
+              <td><button class="completeButton" *ngIf="item.completed==false" (click)="completeTask(item)">Complete</button></td>
+              <td class="task"><span [ngClass]="{'completed' : item.completed == true}">{{item.task}}</span></td>
+              <td><button class="removeX" (click)="removeTask(item)"><b>X</b></button></td>
+            </tr>
+          </li>
         </div>
       </ol>
-    </li> 
-    <br>
+    </table>
+
+    <b *ngIf="completeToDoList()">Congratulations! You finished everything on your to-do list for the day!</b>
+
+    <input type="text" class="bigText" #newTask (keyup.enter)="addTask(newTask.value); newTask.value=''" placeholder="Add your to-do">
+    <br />
     
-    <input type="text" class="addToDo" placeholder="Add your to-do" #userinput (keyup.enter)="addTask(userinput.value); userinput.value=''" (blur)="addTask(userinput.value); userinput.value=''">
-    <button class="addButton" (click)="addTask(userinput.value); userinput.value=''">Add</button>
-  </div>
-    
-  
+    <button class="addButton" (click)="addTask(newTask.value); newTask.value=''">Add</button>
+  </fieldset>
 </div>

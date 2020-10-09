@@ -6,50 +6,59 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'TODO List';
- 
-  toDoList: List[] = [
-    {
-      task: 'Fold Clothes',
-      complete: false
+	title = "TODO List";
+	subtitle = "A place to store your to-dos";
+	
+	toDoList: ToDo[] = [
+		{
+      task: "Fold Clothes", 
+      completed: false
     },
-    {
-      task: 'Put Clothes In Dresser',
-      complete: false
+		{
+      task: "Put Clothes In Dresser", 
+      completed: false
     },
-    {
-      task: 'relax',
-      complete: false
+		{
+      task: "Relax", 
+      completed: false
     },
-    {
-      task: 'Try To Pet Cat',
-      complete: true
+		{
+      task: "Try To Pet Cat", 
+      completed: true
     },
-    {
-      task: 'Pet Dog',
-      complete: false
+		{
+      task: "Pet Dog", 
+      completed: false
     },
-    {
-      task: 'Be Awesome',
-      complete: false
+		{
+      task: "Be Awesome", 
+      completed: false
     }
-  ];
+	];
 
-  addTask(newtask: string){
-    this.toDoList.push({task: newtask, complete: false});
-  }
+	addTask(newItem: string) {
+		this.toDoList.push({task: newItem, completed: false});
+	}
 
-  completeTask(iscomplete: List){
-    iscomplete.complete = true;
-  }
-    
-  removeTask(remove: List){
-    this.toDoList = this.toDoList.filter(item=>item!==remove);
-    console.log("you finished your task")
-  }  
+	completeTask(completeMe: ToDo) {
+			completeMe.completed = true;
+	}
+
+	removeTask(remove: ToDo) {
+		this.toDoList.splice(this.toDoList.indexOf(remove), 1);
+	}
+
+	completeToDoList(){
+		if (this.toDoList.length == 0 || this.toDoList.filter(x => x.completed == true).length == this.toDoList.length) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
 }
 
-interface List {
-  task: string,
-  complete: boolean
-};
+interface ToDo {
+	task: string;
+	completed: boolean;
+}

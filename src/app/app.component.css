@@ -8,7 +8,7 @@
     z-index: 10;
 }
 
-fieldset.lineItUp {
+fieldset.pageLayout {
     width: 65%;
     margin-left: auto;
     margin-right: auto;
@@ -38,7 +38,7 @@ h1 {
     line-height: 10px;
 }
 
-input.bigText {
+.inputText {
     width: 99%;
     border-radius: 5px;
     border-style: solid;

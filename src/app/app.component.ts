@@ -40,12 +40,16 @@ export class AppComponent {
 		this.toDoList.push({task: newItem, completed: false});
 	}
 
-	completeTask(completeMe: ToDo) {
-			completeMe.completed = true;
+	completeTask(completeList: ToDo) {
+		completeList.completed = true;
 	}
 
 	removeTask(remove: ToDo) {
 		this.toDoList.splice(this.toDoList.indexOf(remove), 1);
+	}
+
+	editTask(modTask: string, index: number) {
+		this.toDoList[index].task = modTask;
 	}
 
 	completeToDoList(){

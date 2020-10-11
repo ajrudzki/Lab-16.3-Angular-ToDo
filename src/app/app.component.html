@@ -1,9 +1,9 @@
 <div class="pageStyle">
-  <fieldset class="lineItUp">
+  <fieldset class="pageLayout">
 
     <h1>{{title}}</h1>
     <div>{{subtitle}}</div><br>
-    <input type="text" class="bigText" placeholder="Filter your to-dos">
+    <input type="text" class="inputText" placeholder="Filter your to-dos">
 
     <table>
       <ol>
@@ -12,6 +12,7 @@
             <tr>
               <td><button class="completeButton" *ngIf="item.completed==false" (click)="completeTask(item)">Complete</button></td>
               <td class="task"><span [ngClass]="{'completed' : item.completed == true}">{{item.task}}</span></td>
+              <td class="task"><input type="text" [ngClass]="{'completed' : item.completed == true}" value={{item.task}} #modTask (keyup.enter)="$event.target.blur();editTask(modTask.value, index)" (blur)="editTask(modTask.value, index)"/></td>
               <td><button class="removeX" (click)="removeTask(item)"><b>X</b></button></td>
             </tr>
           </li>
@@ -21,7 +22,7 @@
 
     <b *ngIf="completeToDoList()">Congratulations! You finished everything on your to-do list for the day!</b>
 
-    <input type="text" class="bigText" #newTask (keyup.enter)="addTask(newTask.value); newTask.value=''" placeholder="Add your to-do">
+    <input type="text" class="inputText" #newTask (keyup.enter)="addTask(newTask.value); newTask.value=''" placeholder="Add your to-do">
     <br />
     
     <button class="addButton" (click)="addTask(newTask.value); newTask.value=''">Add</button>
